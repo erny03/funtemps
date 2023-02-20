@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+
 	"github.com/erny03/funtemps/conv"
 )
 
@@ -13,7 +14,7 @@ var outputEnhet string
 func init() {
 	flag.Float64Var(&tempVerdi, "temp", 0.0, "temperaturverdi som skal konverteres")
 	flag.StringVar(&tempEnhet, "enhet", "C", "enhetsbetegnelse for temperaturverdien som skal konverteres (C, F, K)")
-	flag.StringVar(&outputEnhet, "out", "c", "enhetsbetegnelse for den konverterte temperaturverdien (C, F, K)")
+	flag.StringVar(&outputEnhet, "out", "C", "enhetsbetegnelse for den konverterte temperaturverdien (C, F, K)")
 }
 
 func main() {
@@ -23,8 +24,8 @@ func main() {
 	var outputEnhetNavn string
 
 	if tempEnhet == "C" {
-		if outputEnhetNavn == "F" {
-			konvertertTemp = conv.CelsiusToFahrenheit(tempVerdi)
+		if outputEnhet == "F" {
+			konvertertTemp = conv.CelsiusToFarhenheit(tempVerdi)
 			outputEnhetNavn = "°F"
 		} else if outputEnhet == "K" {
 			konvertertTemp = conv.CelsiusToKelvin(tempVerdi)
@@ -36,8 +37,8 @@ func main() {
 	}
 
 	if tempEnhet == "F" {
-		if outputEnhetNavn == "C" {
-			konvertertTemp = conv.FarhenheitToCelsius (tempVerdi)
+		if outputEnhet == "C" {
+			konvertertTemp = conv.FarhenheitToCelsius(tempVerdi)
 			outputEnhetNavn = "°C"
 		} else if outputEnhet == "K" {
 			konvertertTemp = conv.FarhenheitToKelvin(tempVerdi)
@@ -47,17 +48,17 @@ func main() {
 			outputEnhetNavn = "°F"
 		}
 	}
-	
+
 	if tempEnhet == "K" {
-		if outputEnhetNavn == "C" {
+		if outputEnhet == "C" {
 			konvertertTemp = conv.KelvinToCelsius(tempVerdi)
 			outputEnhetNavn = "°C"
 		} else if outputEnhet == "F" {
-			konvertertTemp = conv.KelvinToFarhenheit (tempVerdi)
-			outputEnhetNavn = "F"
+			konvertertTemp = conv.KelvinToFarhenheit(tempVerdi)
+			outputEnhetNavn = "°F"
 		} else {
 			konvertertTemp = tempVerdi
-			outputEnhetNavn = "°K"
+			outputEnhetNavn = "K"
 		}
 	}
 
